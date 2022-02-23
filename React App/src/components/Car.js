@@ -24,7 +24,7 @@ function Car({ setCars, car, cars, currentWindow, setCarPage }) {
         <div className="col-6">
           {currentWindow === "EditPage" && (
             <button
-              className="btn btn-danger position-relative top-0 start-100 translate-middle"
+              className="btn btn-danger position -relative top-0 start-100 translate-middle"
               onClick={deleteSelf}
             >
               Delete
