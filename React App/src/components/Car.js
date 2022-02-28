@@ -1,17 +1,21 @@
 import React from "react";
-import PlaceholderLoading from "react-placeholder-loading";
 import "./car.css";
+
 //this is the website I used to get the car images https://www.carrentals.com/carsearch?paandi=true&fdrp=1&styp=2&dagv=1&subm=1&locn=Skien,%20Vestfold%20og%20Telemark,%20Norway&dpln=3185&date1=2/27/2022&date2=3/1/2022&crfrr=defaultFlex&SearchType=Place
 //https://www.carmax.com/cars/sports-cars
 
-function Car({ setCars, car, cars, currentWindow, setCarPage }) {
+function Car({ setCars, car, cars, currentWindow, setCarPage, carPage }) {
   const carClicked = (e) => {
-    setCarPage(car.id);
+    const df = car;
+    console.log(df);
+    setCarPage((carPage) => ({
+      ...carPage,
+      ...car,
+    }));
   };
   const deleteSelf = (e) => {
     car.id = currentWindow;
     setCarPage("");
-    console.log(cars.length);
     const updatedCars = cars.filter((i) => i.id !== car.id);
     setCars(updatedCars);
   };
