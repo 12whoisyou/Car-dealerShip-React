@@ -26,7 +26,7 @@ function CarPage({ car, cars, setCars }) {
 
         <div className="container-fluid">
           <h1>{car.name}</h1>
-          <h2>{car.price + " 000 Kr"}</h2>
+          <h2>{car.price}</h2>
         </div>
       </div>
       <div className="container-fluid col-lg-6">

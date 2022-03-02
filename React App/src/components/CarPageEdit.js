@@ -18,14 +18,40 @@ function CarPage({ car, cars, setCars }) {
       </a> */
   return (
     <div className="container-fluid row m-2">
+      <input type="file" id="uploadBannerImage" accept="image/*" name="helo" />
       <div className="col-lg-6 row">
         <div className="container-fluid">
           <img src={car.path}></img>
         </div>
 
         <div className="container-fluid">
-          <h1>{car.name}</h1>
-          <h2>{car.price + " 000 Kr"}</h2>
+          <EdiText
+            cancelOnUnfocus
+            type="text"
+            inputProps={{
+              id: "name",
+            }}
+            saveButtonContent="Apply"
+            cancelButtonContent={<strong>Cancel</strong>}
+            editButtonContent="Edit Name"
+            value={car.name}
+            onSave={onSave}
+            submitOnEnter={true}
+          />
+          <EdiText
+            cancelOnUnfocus
+            type="number"
+            inputProps={{
+              id: "price",
+            }}
+            saveButtonContent="Apply"
+            cancelButtonContent={<strong>Cancel</strong>}
+            editButtonContent="Edit Name"
+            value={car.name}
+            onSave={onSave}
+            submitOnEnter={true}
+          />
+          <h2>{car.price + " Kr"}</h2>
         </div>
       </div>
 

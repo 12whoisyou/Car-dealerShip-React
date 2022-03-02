@@ -86,7 +86,7 @@ function Cars({ currentWindow }) {
       carsList[index] = {
         name: car,
         path: "/images/" + car + ".png",
-        price: Math.floor(Math.random() * 10 * 10).toString(),
+        price: (Math.floor(Math.random() * 10 * 10) * 1000).toString(),
         transmission:
           Math.floor(Math.random() * 2) == 1 ? "Manual" : "Automatic",
         type: Math.floor(Math.random() * 2) == 1 ? "Electric" : "Gas",
@@ -123,7 +123,6 @@ function Cars({ currentWindow }) {
 
   const uploadCar = () => {
     setCars([
-      ...cars,
       {
         name: "name",
         path: "/images/" + "name" + ".png",
@@ -135,8 +134,9 @@ function Cars({ currentWindow }) {
         speed: "0",
         desc: "desc",
         description: "description",
-        id: cars.length - 1,
+        id: cars.length,
       },
+      ...cars,
     ]);
     setPage(cars.length);
   };
@@ -168,6 +168,7 @@ function Cars({ currentWindow }) {
   const elements = useInfiniteScroll(cars, limit, page);
   if (Object.keys(carPage).length) {
     if (currentWindow === "EditPage") {
+      console.log(carPage);
       return <CarPageEdit car={carPage} cars={cars} setCars={setCars} />;
     } else {
       return <CarPage car={carPage} cars={cars} setCars={setCars} />;
