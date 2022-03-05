@@ -6,6 +6,8 @@ import { Waypoint } from "react-waypoint";
 import Car from "./Car.js";
 import CarPage from "./CarPage.js";
 import CarPageEdit from "./CarPageEdit.js";
+import Filters from "./Filters.js";
+import Edits from "./Edits.js";
 
 //hooks
 import useInfiniteScroll from "../hooks/useInfiniteScroll.js";
@@ -147,6 +149,7 @@ function Cars({ currentWindow }) {
 
   useEffect(() => {
     setCarPage({});
+    console.log("ehm");
   }, [currentWindow]);
 
   useEffect(() => {
@@ -166,6 +169,9 @@ function Cars({ currentWindow }) {
   const limit = 5;
   const [page, setPage] = useState(1);
   const elements = useInfiniteScroll(cars, limit, page);
+
+  var data =
+    "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(cars));
   if (Object.keys(carPage).length) {
     if (currentWindow === "EditPage") {
       console.log(carPage);
@@ -176,17 +182,12 @@ function Cars({ currentWindow }) {
   } else {
     return (
       <>
-        <select
-          name="dropdown"
-          className="ms-2"
-          onChange={(e) => setSort(e.target.value)}
-        >
-          <option value="price high to low">Price high to low</option>
-          <option value="price low to high">Price low to high</option>
-        </select>
-        <button className="ms-2" onClick={uploadCar}>
-          Upload Car
-        </button>
+        <Filters setSort={setSort} />
+
+        {currentWindow === "EditPage" && (
+          <Edits uploadCar={uploadCar} data={data} />
+        )}
+
         <div className="container-fluid row">
           {elements.map((car) => (
             <React.Fragment key={car.id}>

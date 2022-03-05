@@ -21,23 +21,22 @@ function Car({ setCars, car, cars, currentWindow, setCarPage, carPage }) {
   };
   return (
     <div className="col-xxl-4 col-lg-6 col-sm-12">
+      {currentWindow === "EditPage" && (
+        <button
+          className="btn btn-danger top-50 start-100 translate-middle position-relative "
+          onClick={deleteSelf}
+        >
+          Delete
+        </button>
+      )}
       <div onClick={carClicked} className="border m-3 row car">
         <div className="col-6">
           <img src={car.path}></img>
         </div>
         <div className="col-6">
-          {currentWindow === "EditPage" && (
-            <button
-              className="btn btn-danger position-relative top-0 start-100 translate-middle"
-              onClick={deleteSelf}
-            >
-              Delete
-            </button>
-          )}
-
           <h2>{car.name}</h2>
           <h6>Den perfekte familie bilen</h6>
-          <h5 value="price">{car.price + " 000 Kr"}</h5>
+          <h5 value="price">{car.price + " Kr"}</h5>
         </div>
       </div>
     </div>

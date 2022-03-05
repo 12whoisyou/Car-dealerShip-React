@@ -1,22 +1,7 @@
 import React from "react";
-import EdiText from "react-editext";
 
 import "./carpage.css";
 function CarPage({ car, cars, setCars }) {
-  const onSave = (val, self) => {
-    const updatedCars = cars.filter((i) => i.id !== car.id);
-    car[self.id] = val;
-    updatedCars.splice(car.id, 0, car);
-    console.log(car);
-    setCars(updatedCars);
-  };
-
-  var data =
-    "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(car));
-  /**       
-   * <a href={`data: ${data}`} download={"data.json"}>
-        Download JSON
-      </a>*/
   return (
     <div className="container-fluid row m-2">
       <div className="col-lg-6 row">

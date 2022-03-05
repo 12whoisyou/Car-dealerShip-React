@@ -2,7 +2,11 @@ import React from "react";
 
 function NavButton({ setCurrentWindow, currentWindow, value, text }) {
   const windowHandler = (e) => {
-    setCurrentWindow(e.target.value);
+    if (currentWindow === "Cars" && e.target.value === "Cars") {
+      setCurrentWindow("Cars2");
+    } else {
+      setCurrentWindow(e.target.value);
+    }
   };
 
   return (

@@ -13,6 +13,7 @@ function App() {
 
   switch (currentWindow) {
     case "Cars":
+    case "Cars2":
       return (
         <>
           <NavBar
