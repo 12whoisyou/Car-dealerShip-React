@@ -23,7 +23,7 @@ function Car({ setCars, car, cars, currentWindow, setCarPage, carPage }) {
     <div className="col-xxl-4 col-lg-6 col-sm-12">
       {currentWindow === "EditPage" && (
         <button
-          className="btn btn-danger top-50 start-100 translate-middle position-relative "
+          className="btn btn-danger top-100 start-100  position-sticky"
           onClick={deleteSelf}
         >
           Delete
@@ -33,7 +33,7 @@ function Car({ setCars, car, cars, currentWindow, setCarPage, carPage }) {
         <div className="col-6">
           <img src={car.path}></img>
         </div>
-        <div className="col-6">
+        <div className="col-6 mt-1">
           <h2>{car.name}</h2>
           <h6>Den perfekte familie bilen</h6>
           <h5 value="price">{car.price + " Kr"}</h5>
