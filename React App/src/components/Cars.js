@@ -136,7 +136,7 @@ function Cars({ currentWindow }) {
         speed: "0",
         desc: "desc",
         description: "description",
-        id: cars.length,
+        id: cars.length + 1,
       },
       ...cars,
     ]);
