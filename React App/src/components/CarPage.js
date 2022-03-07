@@ -11,7 +11,15 @@ function CarPage({ car, cars, setCars }) {
 
         <div className="container-fluid">
           <h1>{car.name}</h1>
-          <h2>{car.price}</h2>
+          <h2>{car.price + " Kr"}</h2>
+          <br />
+          <br />
+          <h3 className="fw-bolder">Info: </h3>
+          <h5>{car.transmission}</h5>
+          <h5>{car.type}</h5>
+          <h5>{"Top speed is " + car.speed + " km/h"}</h5>
+          <h5>{car.miles + " miles driven"}</h5>
+          <h5>{car.seats + " seats"}</h5>
         </div>
       </div>
       <div className="container-fluid col-lg-6">
