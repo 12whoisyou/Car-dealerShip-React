@@ -33,7 +33,7 @@ function CarPage({ car, cars, setCars }) {
             <EditText
               name="price"
               defaultValue={car.price}
-              onChange={onSave}
+              onSave={onSave}
               type="number"
             />
           </div>
