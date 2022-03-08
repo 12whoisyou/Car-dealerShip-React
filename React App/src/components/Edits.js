@@ -1,6 +1,8 @@
 import React from "react";
 
-function Edits({ uploadCar, data }) {
+function Edits({ uploadCar, cars }) {
+  let data =
+    "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(cars));
   return (
     <>
       <button className="ms-2" onClick={uploadCar}>
