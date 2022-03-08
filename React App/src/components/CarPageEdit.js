@@ -34,6 +34,7 @@ function CarPage({ car, cars, setCars }) {
   const carImageHandler = (e) => {
     console.log("Calling the img saver / loader");
     let img = e.target.files[0];
+
     setImg(URL.createObjectURL(img));
 
     if (localStorage.getItem("images") === null) {
@@ -81,7 +82,7 @@ function CarPage({ car, cars, setCars }) {
               onSave={onSave}
               type="number"
             />
-            <Selection Buttons={"Helo Button|your choices|Yeah you choice"} />
+            <Selection Buttons={"Helo Button!your choices!Yeah you choice"} />
           </div>
         </div>
 
