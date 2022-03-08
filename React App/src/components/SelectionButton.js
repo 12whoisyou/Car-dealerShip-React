@@ -1,7 +1,7 @@
 import React from "react";
 
-function SelectionButton() {
-  return <div>SelectionButton</div>;
+function SelectionButton({ name }) {
+  return <div>{name}</div>;
 }
 
 export default SelectionButton;
