@@ -2,9 +2,17 @@ import React from "react";
 
 import SelectionButton from "./SelectionButton.js";
 function Selection({ Buttons }) {
-  const buttonGroups = Buttons.split("|");
-  console.log(buttonGroups);
-  return <div>Selection</div>;
+  let s = Buttons.replace(/!/g, " ");
+
+  const buttonGroupss = s.split(" ");
+
+  return (
+    <>
+      {buttonGroupss.map((b) => (
+        <SelectionButton key={b} name={b} />
+      ))}
+    </>
+  );
 }
 
 export default Selection;
