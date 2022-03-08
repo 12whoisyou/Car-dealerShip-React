@@ -7,7 +7,6 @@ import "./car.css";
 function Car({ setCars, car, cars, currentWindow, setCarPage, carPage }) {
   const carClicked = (e) => {
     const df = car;
-    console.log(df);
     setCarPage((carPage) => ({
       ...carPage,
       ...car,
@@ -29,7 +28,7 @@ function Car({ setCars, car, cars, currentWindow, setCarPage, carPage }) {
           Delete
         </button>
       )}
-      <div onClick={carClicked} className="border m-3 row car">
+      <div onClick={carClicked} className="border mx-1 mt-3 row car">
         <div className="col-6">
           <img src={car.path}></img>
         </div>
