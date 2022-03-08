@@ -16,6 +16,14 @@ import useInfiniteScroll from "../hooks/useInfiniteScroll.js";
 import data from "../data/cars.json";
 
 function Cars({ currentWindow }) {
+  /*   const filterCars = (cars) => {
+    //If a filter get's deleted we can't do anything about it :(
+
+    const arr1 = [{ id: 0 }, { id: 0 }]; //Apply your filter and store
+    return (arraySame = arr1.filter((x) =>
+      arr2.some((item) => item.id === x.id)
+    ));
+  }; */
   const generateCars = () => {
     //Generating cars
     let carsList = [
@@ -149,7 +157,6 @@ function Cars({ currentWindow }) {
 
   useEffect(() => {
     setCarPage({});
-    console.log("ehm");
   }, [currentWindow]);
 
   useEffect(() => {
@@ -170,11 +177,8 @@ function Cars({ currentWindow }) {
   const [page, setPage] = useState(1);
   const elements = useInfiniteScroll(cars, limit, page);
 
-  var data =
-    "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(cars));
   if (Object.keys(carPage).length) {
     if (currentWindow === "EditPage") {
-      console.log(carPage);
       return <CarPageEdit car={carPage} cars={cars} setCars={setCars} />;
     } else {
       return <CarPage car={carPage} cars={cars} setCars={setCars} />;
@@ -185,10 +189,10 @@ function Cars({ currentWindow }) {
         <Filters setSort={setSort} />
 
         {currentWindow === "EditPage" && (
-          <Edits uploadCar={uploadCar} data={data} />
+          <Edits uploadCar={uploadCar} cars={cars} />
         )}
 
-        <div className="container-fluid row">
+        <div className="container-fluid row mx-auto">
           {elements.map((car) => (
             <React.Fragment key={car.id}>
               <Car
