@@ -19,16 +19,15 @@ function CarPage({ car, cars, setCars }) {
   };
 
   const getBase64Image = (img) => {
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-
-    var dataURL = canvas.toDataURL("image/png");
-
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+    let reader = new FileReader();
+    reader.onload = () => {
+      let imgs = JSON.parse(localStorage.getItem("images"));
+      const image = { [car.id]: reader.result };
+      imgs = Object.assign(imgs, image);
+      console.log(imgs);
+      localStorage.setItem("images", JSON.stringify(imgs));
+    };
+    reader.readAsDataURL(img);
   };
 
   const carImageHandler = (e) => {
@@ -40,21 +39,16 @@ function CarPage({ car, cars, setCars }) {
     if (localStorage.getItem("images") === null) {
       localStorage.setItem("images", JSON.stringify({}));
     }
-
-    let imgs = JSON.parse(localStorage.getItem("images"));
-    imgs[car.id] = getBase64Image(img);
-
-    localStorage.setItem("images", JSON.stringify(img));
-    console.log(imgs);
-    console.log(img);
+    getBase64Image(img);
   };
 
   useEffect(() => {
     if (localStorage.getItem("images") !== null) {
       let imgs = JSON.parse(localStorage.getItem("images"));
-      if (imgs[car.id] !== null) {
+      if (typeof imgs[car.id] !== "undefined") {
         const dataImage = imgs[car.id];
-        setImg("data:image/png;base64," + dataImage);
+        setImg(dataImage);
+        console.log("Loaded image from images");
       }
     }
   }, []);
@@ -82,7 +76,13 @@ function CarPage({ car, cars, setCars }) {
               onSave={onSave}
               type="number"
             />
-            <Selection Buttons={"Helo Button!your choices!Yeah you choice"} />
+            <Selection
+              Buttons={"Automatic Manual!Gas Electric!2 3 4 5"}
+              onSave={onSave}
+              car={car}
+              cars={cars}
+              setCars={setCars}
+            />
           </div>
         </div>
 
