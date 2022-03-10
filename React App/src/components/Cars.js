@@ -99,7 +99,9 @@ function Cars({ currentWindow }) {
         price: (Math.floor(Math.random() * 10 * 10) * 1000).toString(),
         transmission:
           Math.floor(Math.random() * 2) == 1 ? "Manual" : "Automatic",
-        type: Math.floor(Math.random() * 2) == 1 ? "Electric" : "Gas",
+        motor: Math.floor(Math.random() * 2) == 1 ? "Electric" : "Gas",
+        type: Math.floor(Math.random() * 2) == 1 ? "Sport" : "Family",
+        colors: Math.floor(Math.random() * 2) == 1 ? "Grey" : "Black",
         seats: Math.floor(Math.random() * 2) == 1 ? "4" : "5",
         miles: Math.floor(Math.random() * 10 * 10).toString(),
         speed: Math.floor(Math.random() * 20 + 100).toString(),
@@ -130,7 +132,11 @@ function Cars({ currentWindow }) {
     localStorage.setItem("cars", JSON.stringify(cars));
     console.log("Saved cars");
   };
-
+  const resetCars = () => {
+    localStorage.removeItem("cars");
+    localStorage.removeItem("images");
+    setCars(loadCars());
+  };
   const uploadCar = () => {
     setCars([
       {
@@ -181,7 +187,7 @@ function Cars({ currentWindow }) {
     if (currentWindow === "EditPage") {
       return <CarPageEdit car={carPage} cars={cars} setCars={setCars} />;
     } else {
-      return <CarPage car={carPage} cars={cars} setCars={setCars} />;
+      return <CarPage car={carPage} />;
     }
   } else {
     return (
@@ -189,7 +195,7 @@ function Cars({ currentWindow }) {
         <Filters setSort={setSort} />
 
         {currentWindow === "EditPage" && (
-          <Edits uploadCar={uploadCar} cars={cars} />
+          <Edits uploadCar={uploadCar} cars={cars} resetCars={resetCars} />
         )}
 
         <div className="container-fluid row mx-auto">

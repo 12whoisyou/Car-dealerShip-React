@@ -1,12 +1,13 @@
 import React from "react";
 
 import "./carpage.css";
-function CarPage({ car, cars, setCars }) {
+import CarImage from "./CarImage.js";
+function CarPage({ car }) {
   return (
     <div className="container-fluid row m-2">
       <div className="col-lg-6 row">
         <div className="container-fluid">
-          <img src={car.path}></img>
+          <CarImage car={car} />
         </div>
 
         <div className="container-fluid">
@@ -15,8 +16,8 @@ function CarPage({ car, cars, setCars }) {
           <br />
           <br />
           <h3 className="fw-bolder">Info: </h3>
+          <h5>{car.type + " car"}</h5>
           <h5>{car.transmission}</h5>
-          <h5>{car.type}</h5>
           <h5>{"Top speed is " + car.speed + " km/h"}</h5>
           <h5>{car.miles + " miles driven"}</h5>
           <h5>{car.seats + " seats"}</h5>

@@ -27,10 +27,10 @@ function Selection({ Buttons, car, setCars, cars, onSave }) {
         {buttonGroups[1].split(" ").map((b) => (
           <SelectionButton
             key={b}
-            selected={selectedHandler("type", b)}
+            selected={selectedHandler("motor", b)}
             value={b}
             onSave={onSave}
-            name={"type"}
+            name={"motor"}
           />
         ))}
       </div>

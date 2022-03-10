@@ -18,7 +18,7 @@ function CarPage({ car, cars, setCars }) {
     setCars(updatedCars);
   };
 
-  const getBase64Image = (img) => {
+  const storeBase64Image = (img) => {
     let reader = new FileReader();
     reader.onload = () => {
       let imgs = JSON.parse(localStorage.getItem("images"));
@@ -39,7 +39,7 @@ function CarPage({ car, cars, setCars }) {
     if (localStorage.getItem("images") === null) {
       localStorage.setItem("images", JSON.stringify({}));
     }
-    getBase64Image(img);
+    storeBase64Image(img);
   };
 
   useEffect(() => {
