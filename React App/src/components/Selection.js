@@ -1,7 +1,7 @@
 import React from "react";
 
 import SelectionButton from "./SelectionButton.js";
-function Selection({ Buttons, car, setCars, cars, onSave }) {
+function Selection({ Buttons, car, onSave }) {
   const selectedHandler = (group, value) => {
     return car[group] == value;
   };

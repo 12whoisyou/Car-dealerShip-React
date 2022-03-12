@@ -101,7 +101,7 @@ function Cars({ currentWindow }) {
           Math.floor(Math.random() * 2) == 1 ? "Manual" : "Automatic",
         motor: Math.floor(Math.random() * 2) == 1 ? "Electric" : "Gas",
         type: Math.floor(Math.random() * 2) == 1 ? "Sport" : "Family",
-        colors: Math.floor(Math.random() * 2) == 1 ? "Grey" : "Black",
+        color: Math.floor(Math.random() * 2) == 1 ? "Grey" : "Black",
         seats: Math.floor(Math.random() * 2) == 1 ? "4" : "5",
         miles: Math.floor(Math.random() * 10 * 10).toString(),
         speed: Math.floor(Math.random() * 20 + 100).toString(),
@@ -125,8 +125,11 @@ function Cars({ currentWindow }) {
     }
   };
   const [cars, setCars] = useState(loadCars);
+  const [filterdCars, setFilterdCars] = useState(cars);
+
   const [sort, setSort] = useState("");
   const [carPage, setCarPage] = useState({});
+  const [filters, setFilters] = useState({ colors: "All", type: "All" });
 
   const saveLocalCars = () => {
     localStorage.setItem("cars", JSON.stringify(cars));
@@ -166,22 +169,34 @@ function Cars({ currentWindow }) {
   }, [currentWindow]);
 
   useEffect(() => {
-    const sorted = [...cars].sort((a, b) => a["price"] - b["price"]);
-
-    if (sort === "price high to low") {
+    const sorted = [...cars].sort(
+      (a, b) => a[sort.split(" ")[0]] - b[sort.split(" ")[0]]
+    );
+    if (sort.split(" ")[1] == "hl") {
       sorted.reverse();
-      setCars(sorted);
-    } else if (sort === "price low to high") {
-      setCars(sorted);
-    } else {
-      console.log("Erro: Sort type not availible " + sort);
-      setCars(cars);
     }
+    setCars(sorted);
   }, [sort]);
+
+  useEffect(() => {
+    let stored = cars;
+    for (const [key, value] of Object.entries(filters)) {
+      if (value !== "All") {
+        const filtered = [...cars].filter((car) => car[key] == value);
+        console.log("Stored1", stored);
+        stored = filtered.filter((x) =>
+          stored.some((item) => item.id === x.id)
+        );
+        console.log("Stored2", stored);
+      }
+    }
+    console.log("Shit should update");
+    setFilterdCars(stored);
+  }, [filters, cars]);
 
   const limit = 5;
   const [page, setPage] = useState(1);
-  const elements = useInfiniteScroll(cars, limit, page);
+  const elements = useInfiniteScroll(filterdCars, limit, page);
 
   if (Object.keys(carPage).length) {
     if (currentWindow === "EditPage") {
@@ -192,7 +207,7 @@ function Cars({ currentWindow }) {
   } else {
     return (
       <>
-        <Filters setSort={setSort} />
+        <Filters setSort={setSort} setFilters={setFilters} filters={filters} />
 
         {currentWindow === "EditPage" && (
           <Edits uploadCar={uploadCar} cars={cars} resetCars={resetCars} />

@@ -21,6 +21,7 @@ function CarPage({ car }) {
           <h5>{"Top speed is " + car.speed + " km/h"}</h5>
           <h5>{car.miles + " miles driven"}</h5>
           <h5>{car.seats + " seats"}</h5>
+          <h5>{car.color + " color"}</h5>
         </div>
       </div>
       <div className="container-fluid col-lg-6">
