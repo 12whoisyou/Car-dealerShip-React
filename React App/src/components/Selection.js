@@ -1,50 +1,32 @@
 import React from "react";
 
 import SelectionButton from "./SelectionButton.js";
-function Selection({ Buttons, car, onSave }) {
+function Selection({ buttons, car, onSave, types }) {
   const selectedHandler = (group, value) => {
     return car[group] == value;
   };
 
-  let s = Buttons.replace(/!/g, " ");
+  let s = buttons.replace(/!/g, " ");
 
-  const buttonGroups = Buttons.split("!");
+  const buttonGroups = buttons.split("!");
+  const buttonTypes = types.split("!");
 
   return (
     <>
-      <div className="row">
-        {buttonGroups[0].split(" ").map((b) => (
-          <SelectionButton
-            key={b}
-            value={b}
-            selected={selectedHandler("transmission", b)}
-            onSave={onSave}
-            name={"transmission"}
-          />
-        ))}
-      </div>
-      <div className="row">
-        {buttonGroups[1].split(" ").map((b) => (
-          <SelectionButton
-            key={b}
-            selected={selectedHandler("motor", b)}
-            value={b}
-            onSave={onSave}
-            name={"motor"}
-          />
-        ))}
-      </div>
-      <div className="row">
-        {buttonGroups[2].split(" ").map((b) => (
-          <SelectionButton
-            key={b}
-            selected={selectedHandler("seats", b)}
-            value={b}
-            onSave={onSave}
-            name={"seats"}
-          />
-        ))}
-      </div>
+      {buttonTypes.map((type, index) => (
+        <div className="row">
+          {buttonGroups[index].split(" ").map((b) => (
+            <SelectionButton
+              key={b}
+              value={b}
+              selected={selectedHandler(type, b)}
+              onSave={onSave}
+              name={type}
+              colSize={Math.ceil(12 / buttonGroups[index].split(" ").length)}
+            />
+          ))}
+        </div>
+      ))}{" "}
     </>
   );
 }

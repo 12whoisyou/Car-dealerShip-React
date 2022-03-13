@@ -77,7 +77,10 @@ function CarPage({ car, cars, setCars }) {
               type="number"
             />
             <Selection
-              Buttons={"Automatic Manual!Gas Electric!2 3 4 5"}
+              buttons={
+                "Automatic Manual!Gas Electric!2 3 4 5!Blue Black White Red Grey Other"
+              }
+              types={"transmission!motor!seats!color"}
               onSave={onSave}
               car={car}
               cars={cars}

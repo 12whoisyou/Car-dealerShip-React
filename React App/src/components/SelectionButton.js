@@ -1,6 +1,7 @@
 import React from "react";
 
-function SelectionButton({ value, selected, onSave, name }) {
+function SelectionButton({ value, selected, onSave, name, colSize }) {
+  console.log(colSize);
   return (
     <button
       onClick={() => {
@@ -8,8 +9,8 @@ function SelectionButton({ value, selected, onSave, name }) {
       }}
       className={
         selected
-          ? "btn m-1 col-3 btn-primary"
-          : "btn m-1 col-3 btn-outline-primary"
+          ? "btn my-1 col-" + colSize + " btn-primary"
+          : "btn  my-1 col-" + colSize + " btn-outline-primary"
       }
     >
       {value}

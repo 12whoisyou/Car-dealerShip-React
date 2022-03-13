@@ -1,48 +1,57 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-function Filters({ setSort, setFilters, filters }) {
+function Filters({ setSort, setFilters, filters, currentWindow }) {
   const filterHandler = (e) => {
     const type = e.target.value.split(" ")[0];
-    const value = e.target.value.split(" ")[1];
-    let updatedFilters = filters;
-    updatedFilters[type] = value;
-    setFilters(updatedFilters);
-    console.log(updatedFilters, filters);
+    let value = e.target.value.split(" ")[1];
+    if (e.target.checked !== undefined) {
+      value = e.target.checked ? "All" : "";
+    }
+    setFilters({ ...filters, [type]: value });
   };
 
   return (
     <>
-      <input
-        className="form-check-input ms-2"
-        type="checkbox"
-        value=""
-        id="flexCheckDefault"
-        onClick={(e) => {
-          console.log(e);
-        }}
-      />
-
+      {" "}
+      {currentWindow === "EditPage" && (
+        <input
+          className="form-check-input ms-4 my-2"
+          type="checkbox"
+          value='color ""'
+          id="flexCheckDefault"
+          onClick={filterHandler}
+        />
+      )}
       <select
-        disabled
         name="dropdown"
-        className="ms-2 "
+        className={"me-2 ms-" + (currentWindow === "EditPage" ? "1" : "4")}
         onChange={(e) => setSort(e.target.value)}
       >
         <option value="price hl">Price high to low</option>
         <option value="price lh">Price low to high</option>
       </select>
-
       <input
-        className="m-2"
-        class="form-check-input"
+        className="form-check-input  ms-1 my-2"
         type="checkbox"
-        value=""
+        value='colors ""'
+        hidden={currentWindow !== "EditPage"}
         id="flexCheckDefault"
+        onClick={filterHandler}
       />
-
-      <select name="dropdown" className="ms-2" onChange={filterHandler}>
+      <select
+        name="dropdown"
+        className="me-2 ms-1"
+        hidden={filters["colors"] === "" && currentWindow !== "EditPage"}
+        disabled={filters["colors"] === ""}
+        onChange={filterHandler}
+      >
+        <option value="color All">All colors</option>
         <option value="color Black">Black Cars</option>
         <option value="color Grey">Grey cars</option>
+        <option value="color White">White cars</option>
+        <option value="color Red">Red cars</option>
+        <option value="color Blue">Blue cars</option>
+        <option value="color Other">Other cars</option>
       </select>
     </>
   );

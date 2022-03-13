@@ -16,14 +16,7 @@ import useInfiniteScroll from "../hooks/useInfiniteScroll.js";
 import data from "../data/cars.json";
 
 function Cars({ currentWindow }) {
-  /*   const filterCars = (cars) => {
-    //If a filter get's deleted we can't do anything about it :(
 
-    const arr1 = [{ id: 0 }, { id: 0 }]; //Apply your filter and store
-    return (arraySame = arr1.filter((x) =>
-      arr2.some((item) => item.id === x.id)
-    ));
-  }; */
   const generateCars = () => {
     //Generating cars
     let carsList = [
@@ -129,7 +122,7 @@ function Cars({ currentWindow }) {
 
   const [sort, setSort] = useState("");
   const [carPage, setCarPage] = useState({});
-  const [filters, setFilters] = useState({ colors: "All", type: "All" });
+  const [filters, setFilters] = useState({ colors: "", type: "All" });
 
   const saveLocalCars = () => {
     localStorage.setItem("cars", JSON.stringify(cars));
@@ -181,16 +174,14 @@ function Cars({ currentWindow }) {
   useEffect(() => {
     let stored = cars;
     for (const [key, value] of Object.entries(filters)) {
-      if (value !== "All") {
+      if (value !== "All" && value !== "") {
         const filtered = [...cars].filter((car) => car[key] == value);
-        console.log("Stored1", stored);
         stored = filtered.filter((x) =>
           stored.some((item) => item.id === x.id)
         );
         console.log("Stored2", stored);
       }
     }
-    console.log("Shit should update");
     setFilterdCars(stored);
   }, [filters, cars]);
 
@@ -207,7 +198,12 @@ function Cars({ currentWindow }) {
   } else {
     return (
       <>
-        <Filters setSort={setSort} setFilters={setFilters} filters={filters} />
+        <Filters
+          setSort={setSort}
+          setFilters={setFilters}
+          filters={filters}
+          currentWindow={currentWindow}
+        />
 
         {currentWindow === "EditPage" && (
           <Edits uploadCar={uploadCar} cars={cars} resetCars={resetCars} />

@@ -7,7 +7,7 @@ function NavBar({ setCurrentWindow, currentWindow }) {
     window.location.reload();
   };
   return (
-    <ul className="nav nav-tabs">
+    <ul className="nav nav-tabs mb-2">
       <li className="nav-item mx-3">
         <button
           className="btn-lg disabled font-weight-bold nav-link text-black "

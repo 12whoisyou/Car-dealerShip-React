@@ -8,7 +8,6 @@ import CarImage from "./CarImage.js";
 
 function Car({ setCars, car, cars, currentWindow, setCarPage, carPage }) {
   const carClicked = (e) => {
-    const df = car;
     setCarPage((carPage) => ({
       ...carPage,
       ...car,
