@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Car-dealerShip-React/static/css/main.774e7639.css",
+    "main.js": "/Car-dealerShip-React/static/js/main.52e83c95.js",
+    "static/js/787.322b25aa.chunk.js": "/Car-dealerShip-React/static/js/787.322b25aa.chunk.js",
+    "index.html": "/Car-dealerShip-React/index.html",
+    "main.774e7639.css.map": "/Car-dealerShip-React/static/css/main.774e7639.css.map",
+    "main.52e83c95.js.map": "/Car-dealerShip-React/static/js/main.52e83c95.js.map",
+    "787.322b25aa.chunk.js.map": "/Car-dealerShip-React/static/js/787.322b25aa.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.774e7639.css",
+    "static/js/main.52e83c95.js"
+  ]
+}
