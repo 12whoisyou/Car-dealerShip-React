@@ -1,7 +1,6 @@
 import React from "react";
 
 function SelectionButton({ value, selected, onSave, name, colSize }) {
-  console.log(colSize);
   return (
     <button
       onClick={() => {

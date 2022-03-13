@@ -27,7 +27,7 @@ function Car({ setCars, car, cars, currentWindow, setCarPage, carPage }) {
         </div>
         <div className="col-6 mt-1">
           <h2>{car.name}</h2>
-          <h6>Den perfekte familie bilen</h6>
+          <h6>{car.desc}</h6>
           <h5 value="price">{car.price + " Kr"}</h5>
         </div>
       </div>

@@ -16,19 +16,20 @@ function Edits({ uploadCar, cars, resetCars }) {
         download={"data.json"}
         className="btn btn-success mx-2 "
         onClick={() => {
-          const downloadBase64File = (contentType, base64Data, fileName) => {
-            const linkSource = `data:${contentType};base64,${base64Data}`;
+          const downloadFile = (fileFormat, data, fileName) => {
+            const linkSource = "data:" + fileFormat + ";base64" + data;
             const downloadLink = document.createElement("a");
             downloadLink.href = linkSource;
             downloadLink.download = fileName;
             downloadLink.click();
           };
-          let imgs = JSON.parse(localStorage.getItem("images"));
-          console.log(imgs);
-          for (const [key, value] of Object.entries(imgs)) {
-            const obj = cars.filter((x) => x.id === key);
-            downloadBase64File("png", value, "Caught a vibe.png");
-            console.log("This ain't working");
+          if (localStorage.getItem("images") !== null) {
+            let imgs = JSON.parse(localStorage.getItem("images"));
+            for (const [key, value] of Object.entries(imgs)) {
+              const obj = cars.find((x) => x.id === key);
+              downloadFile("png", value, "Caught a vibe.png");
+              console.log("This ain't working", cars);
+            }
           }
         }}
       >

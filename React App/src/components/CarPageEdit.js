@@ -10,11 +10,9 @@ function CarPage({ car, cars, setCars }) {
   const [img, setImg] = useState(car.path);
 
   const onSave = ({ name, value }) => {
-    console.log(name, value);
     const updatedCars = cars.filter((i) => i.id !== car.id);
     car[name] = value;
     updatedCars.splice(car.id, 0, car);
-    console.log(car);
     setCars(updatedCars);
   };
 
@@ -24,7 +22,6 @@ function CarPage({ car, cars, setCars }) {
       let imgs = JSON.parse(localStorage.getItem("images"));
       const image = { [car.id]: reader.result };
       imgs = Object.assign(imgs, image);
-      console.log(imgs);
       localStorage.setItem("images", JSON.stringify(imgs));
     };
     reader.readAsDataURL(img);
@@ -52,6 +49,10 @@ function CarPage({ car, cars, setCars }) {
       }
     }
   }, []);
+  const validationFailed = (textValue) => {
+    alert(`The text <${textValue}> is not valid.
+You shall not use the word SMITH here!!!`);
+  };
   return (
     <>
       <div className="container-fluid row m-2">
@@ -69,7 +70,12 @@ function CarPage({ car, cars, setCars }) {
           </div>
 
           <div className="container-fluid">
-            <EditText name="name" defaultValue={car.name} onSave={onSave} />
+            <EditText
+              placeholder="Car Name"
+              name="name"
+              defaultValue={car.name}
+              onSave={onSave}
+            />
             <EditText
               name="price"
               defaultValue={car.price}
@@ -94,6 +100,14 @@ function CarPage({ car, cars, setCars }) {
             name="description"
             defaultValue={car.description}
             rows="8"
+            onSave={onSave}
+            placeholder="Long description"
+          />
+          <EditTextarea
+            placeholder="Small description"
+            name="desc"
+            defaultValue={car.desc}
+            rows="1"
             onSave={onSave}
           />
         </div>

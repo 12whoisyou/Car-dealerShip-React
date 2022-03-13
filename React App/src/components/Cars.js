@@ -8,6 +8,7 @@ import CarPage from "./CarPage.js";
 import CarPageEdit from "./CarPageEdit.js";
 import Filters from "./Filters.js";
 import Edits from "./Edits.js";
+import AboutPage from "./AboutPage.js";
 
 //hooks
 import useInfiniteScroll from "../hooks/useInfiniteScroll.js";
@@ -16,7 +17,6 @@ import useInfiniteScroll from "../hooks/useInfiniteScroll.js";
 import data from "../data/cars.json";
 
 function Cars({ currentWindow }) {
-
   const generateCars = () => {
     //Generating cars
     let carsList = [
@@ -162,13 +162,15 @@ function Cars({ currentWindow }) {
   }, [currentWindow]);
 
   useEffect(() => {
-    const sorted = [...cars].sort(
-      (a, b) => a[sort.split(" ")[0]] - b[sort.split(" ")[0]]
-    );
-    if (sort.split(" ")[1] == "hl") {
-      sorted.reverse();
+    if (sort !== "") {
+      const sorted = [...cars].sort(
+        (a, b) => a[sort.split(" ")[0]] - b[sort.split(" ")[0]]
+      );
+      if (sort.split(" ")[1] == "hl") {
+        sorted.reverse();
+      }
+      setCars(sorted);
     }
-    setCars(sorted);
   }, [sort]);
 
   useEffect(() => {
@@ -179,7 +181,6 @@ function Cars({ currentWindow }) {
         stored = filtered.filter((x) =>
           stored.some((item) => item.id === x.id)
         );
-        console.log("Stored2", stored);
       }
     }
     setFilterdCars(stored);
@@ -191,18 +192,59 @@ function Cars({ currentWindow }) {
 
   if (Object.keys(carPage).length) {
     if (currentWindow === "EditPage") {
-      return <CarPageEdit car={carPage} cars={cars} setCars={setCars} />;
+      return (
+        <>
+          {" "}
+          <Filters
+            setSort={setSort}
+            sort={sort}
+            setFilters={setFilters}
+            filters={filters}
+            currentWindow={currentWindow}
+            carPage={carPage}
+          />
+          <CarPageEdit car={carPage} cars={cars} setCars={setCars} />
+        </>
+      );
     } else {
-      return <CarPage car={carPage} />;
+      return (
+        <>
+          <Filters
+            setSort={setSort}
+            sort={sort}
+            setFilters={setFilters}
+            filters={filters}
+            currentWindow={currentWindow}
+            carPage={carPage}
+          />
+          <CarPage car={carPage} />{" "}
+        </>
+      );
     }
+  } else if (currentWindow === "AboutPage") {
+    return (
+      <>
+        <Filters
+          setSort={setSort}
+          sort={sort}
+          setFilters={setFilters}
+          filters={filters}
+          currentWindow={currentWindow}
+          carPage={carPage}
+        />
+        <AboutPage />
+      </>
+    );
   } else {
     return (
       <>
         <Filters
           setSort={setSort}
+          sort={sort}
           setFilters={setFilters}
           filters={filters}
           currentWindow={currentWindow}
+          carPage={carPage}
         />
 
         {currentWindow === "EditPage" && (
