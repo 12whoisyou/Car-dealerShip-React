@@ -85,11 +85,11 @@ function Cars({ currentWindow }) {
       "Volkswagen Taigun",
     ];
 
-    carsList.forEach(function (car, index) {
+    carsList.forEach(function(car, index) {
       carsList[index] = {
         name: car,
         path: "/images/" + car + ".png",
-        price: (Math.floor(Math.random() * 10 * 10) * 1000).toString(),
+        price: (Math.floor((Math.random() + 1) * 6 * 10) * 1000).toString(),
         transmission:
           Math.floor(Math.random() * 2) == 1 ? "Manual" : "Automatic",
         motor: Math.floor(Math.random() * 2) == 1 ? "Electric" : "Gas",
@@ -120,9 +120,9 @@ function Cars({ currentWindow }) {
   const [cars, setCars] = useState(loadCars);
   const [filterdCars, setFilterdCars] = useState(cars);
 
-  const [sort, setSort] = useState("");
+  const [sort, setSort] = useState("price hl");
   const [carPage, setCarPage] = useState({});
-  const [filters, setFilters] = useState({ colors: "", type: "All" });
+  const [filters, setFilters] = useState({ colors: "All", type: "All" });
 
   const saveLocalCars = () => {
     localStorage.setItem("cars", JSON.stringify(cars));
@@ -238,19 +238,20 @@ function Cars({ currentWindow }) {
   } else {
     return (
       <>
-        <Filters
-          setSort={setSort}
-          sort={sort}
-          setFilters={setFilters}
-          filters={filters}
-          currentWindow={currentWindow}
-          carPage={carPage}
-        />
+        <>
+          <Filters
+            setSort={setSort}
+            sort={sort}
+            setFilters={setFilters}
+            filters={filters}
+            currentWindow={currentWindow}
+            carPage={carPage}
+          />
 
-        {currentWindow === "EditPage" && (
-          <Edits uploadCar={uploadCar} cars={cars} resetCars={resetCars} />
-        )}
-
+          {currentWindow === "EditPage" && (
+            <Edits uploadCar={uploadCar} cars={cars} resetCars={resetCars} />
+          )}
+        </>
         <div className="container-fluid row mx-auto">
           {elements.map((car) => (
             <React.Fragment key={car.id}>

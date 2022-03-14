@@ -49,10 +49,7 @@ function CarPage({ car, cars, setCars }) {
       }
     }
   }, []);
-  const validationFailed = (textValue) => {
-    alert(`The text <${textValue}> is not valid.
-You shall not use the word SMITH here!!!`);
-  };
+
   return (
     <>
       <div className="container-fluid row m-2">
@@ -108,7 +105,14 @@ You shall not use the word SMITH here!!!`);
             name="desc"
             defaultValue={car.desc}
             rows="1"
-            onSave={onSave}
+            onSave={({ name, value, defaultValue }) => {
+              if (value.length > 24) {
+                value = car.desc;
+                alert("Max 24 charecters her. It isn't saved try again");
+              } else {
+                onSave({ name, value });
+              }
+            }}
           />
         </div>
       </div>

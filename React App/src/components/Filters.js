@@ -22,8 +22,11 @@ function Filters({
     let value = e.target.value.split(" ")[1];
     if (e.target.checked !== undefined) {
       value = e.target.checked ? "hl" : "";
+      setSort(value);
+    } else {
+      setSort(value);
     }
-    setSort(type + value);
+    console.log(sort);
   };
 
   return (
@@ -31,21 +34,23 @@ function Filters({
       hidden={
         Object.entries(carPage).length !== 0 || currentWindow == "AboutPage"
       }
+      className="ms-4"
     >
       <input
-        className="form-check-input ms-4 my-2"
+        className="form-check-input  my-2"
         hidden={currentWindow !== "EditPage"}
         type="checkbox"
         value='sort ""'
         id="flexCheckDefault"
         onClick={sortHandler}
+        defaultChecked={sort !== ""}
       />
       <select
         name="dropdown"
-        className={"me-2 ms-" + (currentWindow === "EditPage" ? "1" : "4")}
+        className={"me-2 ms-1"}
         onChange={(e) => setSort(e.target.value)}
         hidden={sort === "" && currentWindow !== "EditPage"}
-        disabled={sort === ""}
+        disabled={sort == ""}
       >
         <option value="price hl">Price high to low</option>
         <option value="price lh">Price low to high</option>
@@ -59,6 +64,7 @@ function Filters({
         hidden={currentWindow !== "EditPage"}
         id="flexCheckDefault"
         onClick={filterHandler}
+        defaultChecked={filters["colors"] !== ""}
       />
       <select
         name="dropdown"
@@ -83,6 +89,7 @@ function Filters({
         hidden={currentWindow !== "EditPage"}
         id="flexCheckDefault"
         onClick={filterHandler}
+        defaultChecked={filters["motor"] !== ""}
       />
       <select
         name="dropdown"
@@ -103,12 +110,13 @@ function Filters({
         hidden={currentWindow !== "EditPage"}
         id="flexCheckDefault"
         onClick={filterHandler}
+        defaultChecked={filters["transmission"] !== ""}
       />
       <select
         name="dropdown"
         className="me-2 ms-1"
         hidden={filters["transmission"] === "" && currentWindow !== "EditPage"}
-        disabled={filters["transmission"] === ""}
+        disabled={filters["transmission"] == ""}
         onChange={filterHandler}
       >
         <option value="transmission All">All transmissions</option>
@@ -119,10 +127,11 @@ function Filters({
       <input
         className="form-check-input  ms-1 my-2"
         type="checkbox"
-        value='transmission ""'
+        value='type ""'
         hidden={currentWindow !== "EditPage"}
         id="flexCheckDefault"
         onClick={filterHandler}
+        defaultChecked={filters["type"] !== ""}
       />
       <select
         name="dropdown"
