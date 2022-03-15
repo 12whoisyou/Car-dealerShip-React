@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "93fe86c5a4ed0c429d17",
+    "revision": "a6536a2ca2625e55e4c2",
     "url": "/Car-dealerShip-React/static/css/main.29df5a67.chunk.css"
   },
   {
-    "revision": "93fe86c5a4ed0c429d17",
-    "url": "/Car-dealerShip-React/static/js/main.93fe86c5.chunk.js"
+    "revision": "a6536a2ca2625e55e4c2",
+    "url": "/Car-dealerShip-React/static/js/main.a6536a2c.chunk.js"
   },
   {
     "revision": "aa1ef92c5cf7728f9d0a",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/Car-dealerShip-React/static/js/runtime~main.48902dea.js"
   },
   {
-    "revision": "7846cb97a8f976ed76e8bf208d946e41",
+    "revision": "19d24513dd76480a5fc4d48d0bbdfe21",
     "url": "/Car-dealerShip-React/index.html"
   }
 ];
