@@ -120,9 +120,9 @@ function Cars({ currentWindow }) {
   const [cars, setCars] = useState(loadCars);
   const [filterdCars, setFilterdCars] = useState(cars);
 
-  const [sort, setSort] = useState("price hl");
+  const [sort, setSort] = useState(data[2]);
+  const [filters, setFilters] = useState(data[1]);
   const [carPage, setCarPage] = useState({});
-  const [filters, setFilters] = useState({ colors: "All", type: "All" });
 
   const saveLocalCars = () => {
     localStorage.setItem("cars", JSON.stringify(cars));
@@ -249,7 +249,13 @@ function Cars({ currentWindow }) {
           />
 
           {currentWindow === "EditPage" && (
-            <Edits uploadCar={uploadCar} cars={cars} resetCars={resetCars} />
+            <Edits
+              uploadCar={uploadCar}
+              cars={cars}
+              resetCars={resetCars}
+              filters={filters}
+              sort={sort}
+            />
           )}
         </>
         <div className="container-fluid row mx-auto">

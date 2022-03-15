@@ -1,8 +1,9 @@
 import React from "react";
 
-function Edits({ uploadCar, cars, resetCars }) {
+function Edits({ uploadCar, cars, resetCars, filters, sort }) {
   let data =
-    "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(cars));
+    "text/json;charset=utf-8," +
+    encodeURIComponent(JSON.stringify([cars, filters, sort]));
   return (
     <>
       <button className="btn btn-primary mx-2 " onClick={uploadCar}>
@@ -26,9 +27,9 @@ function Edits({ uploadCar, cars, resetCars }) {
           if (localStorage.getItem("images") !== null) {
             let imgs = JSON.parse(localStorage.getItem("images"));
             for (const [key, value] of Object.entries(imgs)) {
-              const obj = cars.find((x) => x.id === key);
-              downloadFile("png", value, "Caught a vibe.png");
-              console.log("This ain't working", cars);
+              const obj = cars.find((x) => x.id === parseInt(key));
+              downloadFile("png", value, obj.name + ".png");
+              console.log("This ain't working", obj);
             }
           }
         }}

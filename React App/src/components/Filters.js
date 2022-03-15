@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Filter } from "./Filter.js";
 function Filters({
   setSort,
   sort,
@@ -57,93 +58,35 @@ function Filters({
         <option value="speed lh">Speed low to high</option>
         <option value="speed hl">Speed high to low</option>
       </select>
-      <input
-        className="form-check-input  ms-1 my-2"
-        type="checkbox"
-        value='colors ""'
-        hidden={currentWindow !== "EditPage"}
-        id="flexCheckDefault"
-        onClick={filterHandler}
-        defaultChecked={filters["colors"] !== ""}
-      />
-      <select
-        name="dropdown"
-        className="me-2 ms-1"
-        hidden={filters["colors"] === "" && currentWindow !== "EditPage"}
-        disabled={filters["colors"] === ""}
-        onChange={filterHandler}
-      >
-        <option value="color All">All colors</option>
-        <option value="color Black">Black Cars</option>
-        <option value="color Grey">Grey cars</option>
-        <option value="color White">White cars</option>
-        <option value="color Red">Red cars</option>
-        <option value="color Blue">Blue cars</option>
-        <option value="color Other">Other cars</option>
-      </select>
 
-      <input
-        className="form-check-input  ms-1 my-2"
-        type="checkbox"
-        value='motor ""'
-        hidden={currentWindow !== "EditPage"}
-        id="flexCheckDefault"
-        onClick={filterHandler}
-        defaultChecked={filters["motor"] !== ""}
+      <Filter
+        currentWindow={currentWindow}
+        filterHandler={filterHandler}
+        filters={filters}
+        values={["All", "Black", "Grey", "White", "Red", "Blue", "Other"]}
+        type="colors"
       />
-      <select
-        name="dropdown"
-        className="me-2 ms-1"
-        hidden={filters["motor"] === "" && currentWindow !== "EditPage"}
-        disabled={filters["motor"] === ""}
-        onChange={filterHandler}
-      >
-        <option value="motor All">All motors</option>
-        <option value="motor Gas">Gas motors</option>
-        <option value="motor Electric">Electric motors</option>
-      </select>
-
-      <input
-        className="form-check-input  ms-1 my-2"
-        type="checkbox"
-        value='transmission ""'
-        hidden={currentWindow !== "EditPage"}
-        id="flexCheckDefault"
-        onClick={filterHandler}
-        defaultChecked={filters["transmission"] !== ""}
+      <Filter
+        currentWindow={currentWindow}
+        filterHandler={filterHandler}
+        filters={filters}
+        values={["All", "Gas", "Electric"]}
+        type="motor"
       />
-      <select
-        name="dropdown"
-        className="me-2 ms-1"
-        hidden={filters["transmission"] === "" && currentWindow !== "EditPage"}
-        disabled={filters["transmission"] == ""}
-        onChange={filterHandler}
-      >
-        <option value="transmission All">All transmissions</option>
-        <option value="transmission Manual">Manual transmission</option>
-        <option value="transmission Automatic">Automatic transmission</option>
-      </select>
-
-      <input
-        className="form-check-input  ms-1 my-2"
-        type="checkbox"
-        value='type ""'
-        hidden={currentWindow !== "EditPage"}
-        id="flexCheckDefault"
-        onClick={filterHandler}
-        defaultChecked={filters["type"] !== ""}
+      <Filter
+        currentWindow={currentWindow}
+        filterHandler={filterHandler}
+        filters={filters}
+        values={["All", "Manual", "Automatic"]}
+        type="transmission"
       />
-      <select
-        name="dropdown"
-        className="me-2 ms-1"
-        hidden={filters["type"] === "" && currentWindow !== "EditPage"}
-        disabled={filters["type"] === ""}
-        onChange={filterHandler}
-      >
-        <option value="type Famil">All Car types</option>
-        <option value="type Family">Family car</option>
-        <option value="type Sport">Sport cars</option>
-      </select>
+      <Filter
+        currentWindow={currentWindow}
+        filterHandler={filterHandler}
+        filters={filters}
+        values={["All", "Family", "Sport"]}
+        type="type"
+      />
     </div>
   );
 }
