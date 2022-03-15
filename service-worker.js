@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Car-dealerShip-React/precache-manifest.987486dffc23c4b2bfe8f91b8330c04e.js"
+  "/Car-dealerShip-React/precache-manifest.65f3798f93fded0174c0686fe6642c18.js"
 );
 
 workbox.clientsClaim();

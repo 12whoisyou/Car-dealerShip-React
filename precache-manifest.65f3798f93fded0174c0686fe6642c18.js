@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/Car-dealerShip-React/static/js/runtime~main.48902dea.js"
   },
   {
-    "revision": "a866194af7a1c5729d93c614507c5ae7",
+    "revision": "81752c900585b20cc153393fa6600814",
     "url": "/Car-dealerShip-React/index.html"
   }
 ];
